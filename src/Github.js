@@ -2,6 +2,8 @@ import styled, { keyframes } from "styled-components";
 import { useState, useEffect } from "react";
 import Axios from "axios";
 import { Card, Grid, Icon } from "semantic-ui-react";
+import { device } from "./styled/sizes";
+import theme from "./styled/theme";
 
 export default () => {
   const [repos, setRepos] = useState(null);
@@ -59,7 +61,7 @@ const ButtonLink = styled.a`
 
 const StyledButton = styled(ButtonLink)`
   display: flex;
-  background-color: #234567;
+  background-color: ${theme.primary};
 
   padding: 30px 60px !important;
   justify-content: center;
@@ -71,6 +73,9 @@ const StyledButton = styled(ButtonLink)`
     background-color: red;
     transition: color 0.2s !important;
     transition: background 0.2s !important;
+  }
+  &:visted {
+    color: pink;
   }
 `;
 
@@ -89,11 +94,15 @@ const Star = styled.div`
   animation: ${rotate360} 2s linear infinite;
 `;
 const StyledCard = styled(Card)`
-  height: 200px;
+  min-height: 200px !important;
   margin-bottom: 10px !important;
+  background: blue !important;
 
-  &:hover {
-    animation: ${rotate360} 0.2s linear infinite;
+  @media ${device.tablet} {
+    background: green !important;
+  }
+  @media ${device.mobile} {
+    background: red !important;
   }
 `;
 
@@ -101,4 +110,16 @@ const Truncated = styled.div`
   white-space: ${(props) => (props.wrap ? "wrap" : "nowrap")};
   overflow: hidden;
   text-overflow: ellipsis;
+  display: -webkit-box !important;
+  overflow: hidden !important;
+  -webkit-line-clamp: 2 !important; /* number of lines to show */
+  -webkit-box-orient: vertical !important;
+  @media ${device.tablet} {
+    min-height: 800px !important;
+    background: o !important;
+  }
+  @media ${device.mobile} {
+    min-height: 800px !important;
+    background: red !important;
+  }
 `;
